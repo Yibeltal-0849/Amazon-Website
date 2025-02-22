@@ -1,52 +1,58 @@
 import React from "react";
-// import { BiCart } from "react-icons/bi"; //<BiCart />
-// import { FaSearch } from "react-icons/fa"; //<BsSearch />
-// import { SlLocationPin } from "react-icons/sl"; //<SlLocationPin />;
+import { BiCart } from "react-icons/bi"; //<BiCart />
+import { FaSearch } from "react-icons/fa"; //<BsSearch />
+import { SlLocationPin } from "react-icons/sl";
+import classes from "./header.module.css";
+import LowerHeader from "./LowerHeader";
 
 function Header() {
   return (
     <>
       <section>
-        <section>
-          <div>
-            {/* logo */}
+        <div className={classes.header_container}>
+          {/* logo */}
+          <div className={classes.logo_container}>
             <a href="/">
               <img
                 src="https://pngimg.com/uploads/amazon/small/amazon_PNG11.png"
                 alt="amazon logo"
               />
             </a>
-            {/* delivery */}
-            <span>{/* icon */}</span>
-            <div>
-              <p>Delivered to</p>
-              <span>Ethiopia</span>
+            <div className={classes.delivery}>
+              <span>
+                <SlLocationPin />
+              </span>
+              {/* delivery */}
+              <div>
+                <p>Delivered to</p>
+                <span>Ethiopia</span>
+              </div>
             </div>
           </div>
-          <div>
+
+          <div className={classes.search}>
             {/* search */}
             <select name="" id="">
               <option value="">All</option>
             </select>
             <input type="text" name="" id="" placeholder="Search Product" />
-            {/* icon */}
+            {/* search icon */}
+            <FaSearch size={25} />
           </div>
-          <div>
+          <div className={classes.order_container}>
             {/* right side link */}
-            <div>
+            <a href="" className={classes.language}>
               <img
-                src="https://image.shutterstock.com/image-vector/usa-flag-icons-vector-set-260nw-2491312125.jpg"
+                src="https://cdn.pixabay.com/photo/2017/01/07/16/55/usa-1960922_640.jpg"
                 alt=""
               />
               <select name="" id="">
                 <option value="">EN</option>
               </select>
-            </div>
+            </a>
             <a href="">
-              <div>
-                <p>Sign In</p>
-                <span>Account & list</span>
-              </div>
+              <p>Sign In</p>
+              <span>Account & list</span>
             </a>
             {/* order */}
             <a href="">
@@ -54,13 +60,14 @@ function Header() {
               <span>& Orders</span>
             </a>
             {/* cart */}
-            <a to={"/cart"}>
-              {/* icon */}
+            <a href="" className={classes.cart}>
+              <BiCart size={35} />
               <span>0</span>
             </a>
           </div>
-        </section>
+        </div>
       </section>
+      <LowerHeader />
     </>
   );
 }
