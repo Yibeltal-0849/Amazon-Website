@@ -4,6 +4,7 @@ import TestTwo from "../Header/test/TestTwo";
 import TestOne from "../Header/test/testOne";
 import Carousels from "../Carousel/Carousels";
 import Category from "../Category/Category";
+import Product from "../Product/Product";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Header />
       <Carousels />
       <Category />
+      <Product />
     </>
   );
 };
