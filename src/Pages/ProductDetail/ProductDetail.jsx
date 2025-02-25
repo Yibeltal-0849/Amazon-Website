@@ -34,7 +34,7 @@ function ProductDetail() {
         <Loader />
       ) : (
         <div>
-          <ProductCard product={results} />
+          <ProductCard product={results} flex={true} renderDescr={true} />
         </div>
       )}
     </LayOut>
