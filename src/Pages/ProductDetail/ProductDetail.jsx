@@ -5,19 +5,24 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { productUrl } from "../../Api/endpoints";
 import ProductCard from "../../components/Product/ProductCard";
+import Loader from "../../components/Loader/Loader";
 
 function ProductDetail() {
+  const [isloading, setLoading] = useState(false);
   const [results, setResults] = useState({});
   const { productId } = useParams();
   // console.log(productId);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${productUrl}/products/${productId}`); //+
+        setLoading(true);
+        const response = await axios.get(`${productUrl}/products/${productId}`);
         setResults(response.data);
         console.log(response.data);
+        setLoading(false);
       } catch (err) {
         console.log(err);
+        setLoading(false);
       }
     };
     fetchData();
@@ -25,9 +30,13 @@ function ProductDetail() {
 
   return (
     <LayOut>
-      <div>
-        <ProductCard product={results} />
-      </div>
+      {isloading ? (
+        <Loader />
+      ) : (
+        <div>
+          <ProductCard product={results} />
+        </div>
+      )}
     </LayOut>
   );
 }
