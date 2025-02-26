@@ -12,7 +12,7 @@ function Header() {
   const { basket } = state;
   // console.log(basket.length);
   return (
-    <>
+    <section className={classes.fixed}>
       <section>
         <div className={classes.header_container}>
           {/* logo */}
@@ -73,7 +73,7 @@ function Header() {
         </div>
       </section>
       <LowerHeader />
-    </>
+    </section>
   );
 }
 
