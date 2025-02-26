@@ -18,7 +18,7 @@ function ProductDetail() {
         setLoading(true);
         const response = await axios.get(`${productUrl}/products/${productId}`);
         setResults(response.data);
-        console.log(response.data);
+        // console.log(response.data);
         setLoading(false);
       } catch (err) {
         console.log(err);
