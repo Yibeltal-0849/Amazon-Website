@@ -7,11 +7,11 @@ import { DataContext } from "../DataProvider/DataProvider";
 import { useContext } from "react";
 import { Type } from "../../Utils/action.type";
 
-function ProductCard({ product, flex, renderDescr }) {
+function ProductCard({ product, flex, renderDescr, renderAdd }) {
   const { image, title, id, rating, price, description } = product;
   // console.log(product);
   const { state, dispatch } = useContext(DataContext);
-  console.log(state);
+  // console.log(state);
 
   const addToCart = () => {
     dispatch({
@@ -46,9 +46,11 @@ function ProductCard({ product, flex, renderDescr }) {
         <div>
           <CurrencyFormat amount={price} />
         </div>
-        <button className={classes.button} onClick={addToCart}>
-          add to carts
-        </button>
+        {renderAdd && (
+          <button className={classes.button} onClick={addToCart}>
+            add to carts
+          </button>
+        )}
       </div>
     </div>
   );

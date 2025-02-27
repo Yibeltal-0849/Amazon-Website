@@ -8,7 +8,7 @@ import { Link } from "react-router";
 import { DataContext } from "../DataProvider/DataProvider";
 
 function Header() {
-  const { state, dispnatch } = useContext(DataContext);
+  const { state, dispatch } = useContext(DataContext);
   const { basket } = state;
   // console.log(basket.length);
   return (
