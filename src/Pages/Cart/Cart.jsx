@@ -12,7 +12,11 @@ function Cart() {
   const { basket } = state;
   // console.log(basket.length);
   const total = basket.reduce((amount, item) => {
-    return item.price + amount;
+    // return item.price + amount;//this means
+    //item.price express single item price
+    //item.amount express the quantity of the item
+
+    return item.price * item.amount + amount;
   }, 0);
 
   return (

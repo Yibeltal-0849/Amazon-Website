@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { Routes, Route } from "react-router";
 import Landing from "./Pages/Landing/Landing";
 import Payment from "./Pages/Payment/Payment";
 import SignUp from "./Pages/Auth/SignUp";
