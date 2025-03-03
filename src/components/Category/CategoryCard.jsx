@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./category.module.css";
 import { Link } from "react-router";
 function CategoryCard({ data }) {
-  //   console.log(data);
+  // console.log(data);
   return (
     <div className={styles.category}>
       <Link to={`/category/${data?.name}`}>

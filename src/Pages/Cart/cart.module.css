@@ -76,9 +76,15 @@
   display: flex;
   gap: 20px;
 }
-@media (max-width: 968px) {
+@media (max-width: 576px) {
   .container {
     flex-direction: column;
     order: 1;
+  }
+  .cart_product {
+    display: block;
+  }
+  .cart_container {
+    width: 417px;
   }
 }

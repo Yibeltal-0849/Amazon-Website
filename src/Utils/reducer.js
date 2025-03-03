@@ -10,7 +10,7 @@ export const reducer = (state, action) => {
         basket: [...state.basket, action.item],
       }; */
 
-      //check if the item is already in the basket
+      //check if the item is already in the basket to prevent duplicate item
       const existingItem = state.basket.find(
         (item) => item.id === action.item.id
       );
@@ -31,18 +31,20 @@ export const reducer = (state, action) => {
         };
       }
     case Type.REMOVE_FROM_BASKET:
+      ///find the index of the item that is same to dispatched item id
       const index = state.basket.findIndex((item) => item.id === action.id);
       let newBasket = [...state.basket];
       if (index >= 0) {
         if (newBasket[index].amount > 1) {
           newBasket[index] = {
             ...newBasket[index],
-            amount: newBasket[index].amount - 1,
+            amount: newBasket[index].amount - 1, //amount decrease by 1
           };
         } else {
-          newBasket.splice(index, 1);
+          newBasket.splice(index, 1); //amount===1 ,  item is remove the element
         }
       }
+      //
       return {
         ...state,
         basket: newBasket,

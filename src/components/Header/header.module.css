@@ -104,6 +104,11 @@
 
 .cart {
   position: relative;
+  display: flex;
+}
+.cart h3 {
+  padding-top: 7px;
+  padding-right: 14px;
 }
 .cart span {
   position: absolute;

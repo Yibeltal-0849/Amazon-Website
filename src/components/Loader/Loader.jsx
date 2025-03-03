@@ -8,7 +8,7 @@ function Loader() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "50vh",
+        height: "40vh",
       }}
     >
       <FadeLoader color="#36d7b7" />

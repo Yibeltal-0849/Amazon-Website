@@ -42,13 +42,15 @@ function Cart() {
           ) : (
             basket?.map((item, index) => (
               <section className={classes.cart_product}>
-                <ProductCard
-                  key={index}
-                  product={item}
-                  renderDescr={true}
-                  flex={true}
-                  renderAdd={false}
-                />
+                <div className={classes.myproduct}>
+                  <ProductCard
+                    key={index}
+                    product={item}
+                    renderDescr={true}
+                    flex={true}
+                    renderAdd={false}
+                  />
+                </div>
                 <div className={classes.btn_container}>
                   <button
                     className={classes.btn}

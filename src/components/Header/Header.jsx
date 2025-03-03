@@ -70,9 +70,12 @@ function Header() {
             </Link>
             {/* cart */}
             <Link to="/cart" className={classes.cart}>
-              <BiCart size={35} />
-              {/* <span>{basket.length}</span> */}
-              <span>{totalItem}</span>
+              <div>
+                <BiCart size={35} />
+                {/* <span>{basket.length}</span> */}
+                <span>{totalItem}</span>
+              </div>
+              <h3>cart</h3>
             </Link>
           </div>
         </div>

@@ -12,8 +12,8 @@ const Carousels = () => {
         showIndicators={false}
         showThumbs={false}
       >
-        {img.map((imageItemLink) => {
-          return <img src={imageItemLink} />;
+        {img.map((imageItemLink, index) => {
+          return <img src={imageItemLink} key={index} />;
         })}
       </Carousel>
       <div className={classes.hero_img}></div>

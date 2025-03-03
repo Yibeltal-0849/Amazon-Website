@@ -8,7 +8,7 @@ import { initialState, reducer } from "./Utils/reducer.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/Amazon-Website">
       <DataProvider reducer={reducer} initialState={initialState}>
         <App />
       </DataProvider>

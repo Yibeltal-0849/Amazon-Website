@@ -3,7 +3,7 @@ import LayOut from "../../components/LayOut/LayOut";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { productUrl } from "../../Api/endpoints";
+import { productUrl } from "../../Utils/endpoints";
 import ProductCard from "../../components/Product/ProductCard";
 import Loader from "../../components/Loader/Loader";
 
@@ -11,7 +11,7 @@ function ProductDetail() {
   const [isloading, setLoading] = useState(false);
   const [results, setResults] = useState({});
   const { productId } = useParams();
-  // console.log(productId);
+  console.log(productId);
   useEffect(() => {
     const fetchData = async () => {
       try {
