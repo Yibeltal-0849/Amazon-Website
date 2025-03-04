@@ -82,9 +82,6 @@
     order: 1;
     overflow-x: hidden;
   }
-  .container img {
-    padding-left: 42%;
-  }
   .myproduct,
   .btn_container {
     margin-right: 2%;
