@@ -76,5 +76,6 @@
   .product_flexed {
     display: flex;
     flex-direction: column;
+    gap: 20px;
   }
 }

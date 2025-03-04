@@ -80,11 +80,24 @@
   .container {
     flex-direction: column;
     order: 1;
+    overflow-x: hidden;
+  }
+  .container img {
+    padding-left: 42%;
+  }
+  .myproduct,
+  .btn_container {
+    margin-right: 2%;
+    padding-left: 0.5%;
+  }
+  .product_fixed {
+    gap: 0% !important;
   }
   .cart_product {
     display: block;
   }
   .cart_container {
-    width: 417px;
+    max-width: 100%;
+    padding: 0 !important;
   }
 }
