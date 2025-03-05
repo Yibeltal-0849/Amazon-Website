@@ -19,6 +19,7 @@
     "@mui/material": "^6.4.5",
     "@react-icons/all-files": "^4.1.0",
     "axios": "^1.7.9",
+    "firebase": "^11.4.0",
     "numeral": "^2.0.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

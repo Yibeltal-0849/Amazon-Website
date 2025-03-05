@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router";
 import Landing from "./Pages/Landing/Landing";
 import Payment from "./Pages/Payment/Payment";
-import SignUp from "./Pages/Auth/SignUp";
+import SignUp from "./Pages/Auth/Auth";
 import Cart from "./Pages/Cart/Cart";
 import Orders from "./Pages/Orders/Orders";
 import Results from "./Pages/Results/Results";
