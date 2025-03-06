@@ -44,7 +44,7 @@
   justify-content: center;
   border-radius: 10px;
   overflow: hidden;
-  width: 100%;
+  width: 98%;
   flex: 1;
 }
 .search select,
@@ -53,7 +53,7 @@
   font-weight: bold;
   outline: 1px solid white;
 }
-.search section {
+.search select {
   border: none;
 }
 .search input {

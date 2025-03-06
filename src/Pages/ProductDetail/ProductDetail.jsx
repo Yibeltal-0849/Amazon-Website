@@ -11,7 +11,7 @@ function ProductDetail() {
   const [isloading, setLoading] = useState(false);
   const [results, setResults] = useState({});
   const { productId } = useParams();
-  console.log(productId);
+  // console.log(productId);
   useEffect(() => {
     const fetchData = async () => {
       try {

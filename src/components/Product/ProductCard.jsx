@@ -9,8 +9,8 @@ import { Type } from "../../Utils/action.type";
 
 function ProductCard({ product, flex, renderDescr, renderAdd }) {
   const { image, title, id, rating, price, description } = product;
-  console.log("ID is:", product.id);
-  console.log("image is :", product.image);
+  // console.log("ID is:", product.id);
+  // console.log("image is :", product.image);
   const { state, dispatch } = useContext(DataContext);
   // console.log(state);
 

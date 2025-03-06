@@ -6,14 +6,25 @@ import classes from "./header.module.css";
 import LowerHeader from "./LowerHeader";
 import { Link } from "react-router";
 import { DataContext } from "../DataProvider/DataProvider";
+import { auth } from "../../Utils/firebase";
 
 function Header() {
   const { state, dispatch } = useContext(DataContext);
   const { basket } = state;
+  const { user } = state;
   // console.log(basket.length);
   const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
   }, 0);
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      setTimeout(() => console.log("User signed out successfully"), 100); // Small delay
+    } catch (error) {
+      console.error("Sign Out Error:", error.message);
+    }
+  };
 
   return (
     <section className={classes.fixed}>
@@ -46,7 +57,7 @@ function Header() {
             </select>
             <input type="text" name="" id="" placeholder="Search Product" />
             {/* search icon */}
-            <FaSearch size={25} />
+            <FaSearch size={39} />
           </div>
           <div className={classes.order_container}>
             {/* right side link */}
@@ -59,10 +70,50 @@ function Header() {
                 <option value="">EN</option>
               </select>
             </Link>
-            <Link to="/auth">
-              <p>Sign In</p>
-              <span>Account & list</span>
+            <Link to={!user && "/auth"}>
+              <div>
+                {user ? (
+                  <>
+                    <p>Hello, {user?.email.split("@")[0]}</p>
+                    <span
+                      onClick={() => auth.signOut()}
+                      style={{ cursor: "pointer", color: "red" }}
+                    >
+                      Sign Out
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <p style={{ cursor: "pointer", color: "blue" }}>
+                      {" "}
+                      Hello,Sign In
+                    </p>
+                    <span>Account & list</span>
+                  </>
+                )}
+              </div>
             </Link>
+
+            {/* <Link to={!user && "/auth"}>
+              <div>
+                {user ? (
+                  <>
+                    <p>Hello, {user.email.split("@")[0]}</p>
+                    <span
+                      onClick={handleSignOut}
+                      style={{ cursor: "pointer", color: "red" }}
+                    >
+                      Sign Out
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello, Sign In</p>
+                    <span>Account & List</span>
+                  </>
+                )}
+              </div>
+            </Link> */}
             {/* order */}
             <Link to="/orders">
               <p>returns</p>
