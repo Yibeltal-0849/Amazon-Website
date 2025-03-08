@@ -85,7 +85,6 @@ function Header() {
                 ) : (
                   <>
                     <p style={{ cursor: "pointer", color: "blue" }}>
-                      {" "}
                       Hello,Sign In
                     </p>
                     <span>Account & list</span>
@@ -94,26 +93,6 @@ function Header() {
               </div>
             </Link>
 
-            {/* <Link to={!user && "/auth"}>
-              <div>
-                {user ? (
-                  <>
-                    <p>Hello, {user.email.split("@")[0]}</p>
-                    <span
-                      onClick={handleSignOut}
-                      style={{ cursor: "pointer", color: "red" }}
-                    >
-                      Sign Out
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <p>Hello, Sign In</p>
-                    <span>Account & List</span>
-                  </>
-                )}
-              </div>
-            </Link> */}
             {/* order */}
             <Link to="/orders">
               <p>returns</p>

@@ -1,5 +1,5 @@
 {
-  "homepage": "https://github.com/Yibeltal-0849/Amazon-Website",
+  "homepage": "https://github.com/Yibeltal-0849/Amazon-Website/",
   "name": "amazon-project",
   "private": true,
   "version": "0.0.0",
@@ -20,7 +20,7 @@
     "@react-icons/all-files": "^4.1.0",
     "@stripe/react-stripe-js": "^3.3.0",
     "@stripe/stripe-js": "^5.10.0",
-    "axios": "^1.7.9",
+    "axios": "^1.8.2",
     "firebase": "^11.4.0",
     "numeral": "^2.0.6",
     "react": "^19.0.0",

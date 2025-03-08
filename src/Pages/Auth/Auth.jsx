@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import LayOut from "../../components/LayOut/LayOut";
 import classes from "./Auth.module.css";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import { auth } from "../../Utils/firebase";
 import { Type } from "../../Utils/action.type";
 import { ClipLoader } from "react-spinners";
@@ -17,6 +17,8 @@ function Auth() {
   const [loading, setLoading] = useState({ signIn: false, signUp: false });
   const { state, dispatch } = useContext(DataContext);
   const navigate = useNavigate();
+  const navStateData = useLocation();
+  console.log(navStateData);
 
   //extracting the user property from state
   // const user = state.user;//accesses the user property from state and assigns it to the variable user
@@ -33,7 +35,7 @@ function Auth() {
           // console.log(userInfo);
           dispatch({ type: Type.SET_USER, user: userInfo.user });
           setLoading({ ...loading, signIn: false });
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((error) => {
           // console.log(error);
@@ -47,7 +49,7 @@ function Auth() {
           // console.log(userInfo);
           dispatch({ type: Type.SET_USER, user: userInfo.user });
           setLoading({ ...loading, signUp: false });
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((error) => {
           // console.log(error);
@@ -69,6 +71,18 @@ function Auth() {
       {/* form  */}
       <div className={classes.login_container}>
         <h1>Sign In</h1>
+        {navStateData?.state?.msg && (
+          <small
+            style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
+            }}
+          >
+            {navStateData?.state.msg}
+          </small>
+        )}
         <form action="">
           <div>
             <label htmlFor="email">Email</label>

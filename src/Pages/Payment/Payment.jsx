@@ -5,8 +5,14 @@ import { DataContext } from "../../components/DataProvider/DataProvider";
 import ProductCard from "../../components/Product/ProductCard";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import CurrencyFormat from "../../components/CurrencyFormat/CurrencyFormat";
+import { axiosInstance } from "../../Api/axios";
+import { useNavigate } from "react-router";
+import { ClipLoader } from "react-spinners";
+import { db } from "../../Utils/firebase";
+
 function Payment() {
   const { state } = useContext(DataContext);
+  const [processing, setProcessing] = useState(false);
   const { basket, user } = state;
   // total item
   const totalItem = basket?.reduce((amount, item) => {
@@ -18,11 +24,53 @@ function Payment() {
   }, 0);
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
+
   const [cardError, setCardError] = useState(null);
 
   const handleChange = (e) => {
     console.log(e);
     e?.error?.message ? setCardError(e?.error?.message) : setCardError("");
+  };
+
+  const handlePayment = async (e) => {
+    e.preventDefault();
+    // backend or function => contact to the client secret
+    try {
+      setProcessing(true);
+      const response = await axiosInstance({
+        method: "post",
+        url: `/payment/create?total=${total * 100}`,
+      });
+      console.log(response.data);
+      const clientSecret = response.data?.clientSecret;
+      //client side or react confirmations
+      const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      });
+
+      console.log(paymentIntent);
+      //after confirmation =>order firestore database save,clear basket
+      await db
+        .collection("users")
+        .doc(user.uid)
+        .collection("orders")
+        .doc(paymentIntent.id)
+        .set({
+          basket: basket,
+          amount: paymentIntent.amount,
+          create: paymentIntent.created,
+        });
+
+      navigate("/orders", { state: { msg: "You have placed new orders" } });
+
+      setProcessing(false);
+    } catch (error) {
+      console.log(error);
+      setProcessing(false);
+    }
   };
 
   return (
@@ -45,8 +93,8 @@ function Payment() {
         <div className={classes.flex}>
           <h3>Review item and delivery </h3>
           <div>
-            {basket?.map((item) => (
-              <ProductCard product={item} flex={true} />
+            {basket?.map((item, index) => (
+              <ProductCard product={item} flex={true} key={index} />
             ))}
           </div>
         </div>
@@ -56,7 +104,7 @@ function Payment() {
           <h3>Payment Method</h3>
           <div className={classes.payment_card_container}>
             <div className={classes.payment_details}>
-              <form action="">
+              <form onSubmit={handlePayment}>
                 {/* error */}
                 {cardError && (
                   <small style={{ color: "red" }}>{cardError}</small>
@@ -70,7 +118,16 @@ function Payment() {
                       <p>Total Order |</p> <CurrencyFormat amount={total} />{" "}
                     </span>
                   </div>
-                  <button>Pay Now</button>
+                  <button type="submit">
+                    {processing ? (
+                      <div className={classes.loading}>
+                        <ClipLoader color="gray" size={12} />
+                        <p>Please wait...</p>
+                      </div>
+                    ) : (
+                      "Pay Now"
+                    )}
+                  </button>
                 </div>
               </form>
             </div>

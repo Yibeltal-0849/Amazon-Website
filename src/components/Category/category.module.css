@@ -6,7 +6,7 @@
 }
 
 .category img {
-  width: 92%;
+  width: 100%;
   object-fit: contain;
   max-height: 250px;
   padding: 0px 10px;
@@ -29,16 +29,17 @@
   position: relative;
   margin-top: -10%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   place-items: center;
 }
 @media (max-width: 768px) {
   .category_container {
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
   }
 }
+
 @media (max-width: 521px) {
   .category_container {
-    grid-template-columns: repeat(1, 1fr);
+    /* grid-template-columns: repeat(1, 1fr); */
   }
 }

@@ -8,12 +8,11 @@ import { DataContext } from "./components/DataProvider/DataProvider";
 function App() {
   const { state, dispatch } = useContext(DataContext);
   const { user } = state;
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-      console.log(authUser);
       if (authUser) {
-        console.log(authUser);
+        // console.log(authUser);
         dispatch({
           type: Type.SET_USER,
           user: authUser,

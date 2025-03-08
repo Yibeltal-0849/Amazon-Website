@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 // Firebase function export and used as listen
 export const api = onRequest(app);
 app.post("/payment/create", async (req, res) => {
-  const total = req.query.total;
+  const total = parseInt(req.query.total);
   if (total > 0) {
     // console.log("payment received ", total);
     // res.send(total);

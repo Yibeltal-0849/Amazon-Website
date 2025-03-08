@@ -58,7 +58,7 @@ function Cart() {
                   >
                     <IoIosArrowUp size={20} />
                   </button>
-                  <span>{item.amount}</span>
+                  <span>{item?.amount}</span>
                   <button
                     className={classes.btn}
                     onClick={() => decrement(item.id)}
