@@ -11,7 +11,7 @@ import { ClipLoader } from "react-spinners";
 import { db } from "../../Utils/firebase";
 
 function Payment() {
-  const { state } = useContext(DataContext);
+  const { state, dispatch } = useContext(DataContext);
   const [processing, setProcessing] = useState(false);
   const { basket, user } = state;
   // total item
@@ -42,7 +42,7 @@ function Payment() {
         method: "post",
         url: `/payment/create?total=${total * 100}`,
       });
-      console.log(response.data);
+      // console.log(response.data);
       const clientSecret = response.data?.clientSecret;
       //client side or react confirmations
       const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
@@ -51,7 +51,7 @@ function Payment() {
         },
       });
 
-      console.log(paymentIntent);
+      // console.log(paymentIntent);
       //after confirmation =>order firestore database save,clear basket
       await db
         .collection("users")
@@ -63,9 +63,13 @@ function Payment() {
           amount: paymentIntent.amount,
           create: paymentIntent.created,
         });
+      // empty basket if
+      dispatch({ type: "EMPTY_BASKET" });
+      // navigate to orders page with success message
+      navigate("/orders", { state: { msg: "Order placed successfully" } });
+      setProcessing(false);
 
       navigate("/orders", { state: { msg: "You have placed new orders" } });
-
       setProcessing(false);
     } catch (error) {
       console.log(error);
