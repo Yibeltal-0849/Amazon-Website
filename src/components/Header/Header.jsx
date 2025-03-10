@@ -16,7 +16,7 @@ function Header() {
   // console.log(basket.length);
   const totalItem = basket?.reduce((amount, item) => {
     // return item.amount + amount;
-    return amount + item.price * item.amount;
+    return item.amount + amount;
   }, 0);
 
   const handleSignOut = async () => {
