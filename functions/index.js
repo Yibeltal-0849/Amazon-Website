@@ -1,5 +1,8 @@
+/* code sets up an Express.js API on Firebase Functions with Stripe for payment processing */
+
+// it runs when an HTTP request is made
 import { onRequest } from "firebase-functions/v2/https";
-import { logger } from "firebase-functions";
+
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -28,12 +31,15 @@ app.post("/payment/create", async (req, res) => {
   if (total > 0) {
     // console.log("payment received ", total);
     // res.send(total);
+
+    // Calls the Stripe API to create a PaymentIntent/payment process.
     const paymentIntent = await stripe.paymentIntents.create({
       amount: total,
       currency: "usd",
     });
-
+    // console.log(paymentIntent);
     res.status(201).json({
+      // client_secret: confirm the payment securely.
       clientSecret: paymentIntent.client_secret,
     });
   } else {

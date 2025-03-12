@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import LayOut from "../../components/LayOut/LayOut";
 import classes from "./Auth.module.css";
 import { Link, useNavigate, useLocation } from "react-router";
 import { auth } from "../../Utils/firebase";
@@ -20,9 +19,7 @@ function Auth() {
   const navStateData = useLocation();
   console.log(navStateData);
 
-  //extracting the user property from state
-  // const user = state.user;//accesses the user property from state and assigns it to the variable user
-  const { user } = state; //object destructuring to extract the user property from state and directly declare it as a variable.
+  const { user } = state; 
   // console.log(user);
   // console.log(email, password);
   const authHandler = async (e) => {

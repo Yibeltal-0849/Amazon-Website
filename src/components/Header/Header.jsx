@@ -86,7 +86,13 @@ function Header() {
                   </>
                 ) : (
                   <>
-                    <p style={{ cursor: "pointer", color: "blue" }}>
+                    <p
+                      style={{
+                        cursor: "pointer",
+                        color: "yellow",
+                        fontWeight: "bold",
+                      }}
+                    >
                       Hello,Sign In
                     </p>
                     <span>Account & list</span>

@@ -22,8 +22,14 @@ function Payment() {
   const total = basket.reduce((amount, item) => {
     return item.price * item.amount + amount;
   }, 0);
+
+  //  Process payments
   const stripe = useStripe();
+
+  // Manage form inputs securely.
   const elements = useElements();
+
+  // navigate to different routes dynamically without using <Link> or <Redirect>
   const navigate = useNavigate();
 
   const [cardError, setCardError] = useState(null);
@@ -44,15 +50,17 @@ function Payment() {
       });
       // console.log(response.data);
       const clientSecret = response.data?.clientSecret;
-      //client side or react confirmations
+
+      // confirms a payment using Stripe’s confirmCardPayment using client secret
       const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
+          // CardElement:type of Elements component, collects all necessary card details.
         },
       });
 
       // console.log(paymentIntent);
-      //after confirmation =>order firestore database save,clear basket
+      //after confirmation =>order firestore database save,
       await db
         .collection("users")
         .doc(user.uid)

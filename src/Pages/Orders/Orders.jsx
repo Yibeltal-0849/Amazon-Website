@@ -13,7 +13,7 @@ function Orders() {
 
   useEffect(() => {
     if (user) {
-      console.log("User UID:", user.uid); // Debug user.uid
+      //  console.log("User UID:", user.uid); // Debug user.uid
       db.collection("users")
         .doc(user.uid) // Target the user document
         .collection("orders") // Target the orders subcollection

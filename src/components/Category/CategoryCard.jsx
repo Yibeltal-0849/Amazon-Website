@@ -5,7 +5,7 @@ function CategoryCard({ data }) {
   // console.log(data);
   return (
     <div className={styles.category}>
-      <Link to={`/category/${data?.name}`}>
+      <Link to={`/category/${data?.name}`} style={{ fontWeight: "bold" }}>
         <span>
           <h2>{data?.title}</h2>
         </span>
