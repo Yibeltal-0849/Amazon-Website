@@ -12,21 +12,21 @@ function Header() {
   const { state, dispatch } = useContext(DataContext);
   const { basket } = state;
   const { user } = state;
-  // console.log(user);
+  console.log(user);
   // console.log(basket.length);
   const totalItem = basket?.reduce((amount, item) => {
     // return item.amount + amount;
     return item.amount + amount;
   }, 0);
 
-  const handleSignOut = async () => {
-    try {
-      await auth.signOut();
-      setTimeout(() => console.log("User signed out successfully"), 100); // Small delay
-    } catch (error) {
-      console.error("Sign Out Error:", error.message);
-    }
-  };
+  // const handleSignOut = async () => {
+  //   try {
+  //     await auth.signOut();
+  //     setTimeout(() => console.log("User signed out successfully"), 100); // Small delay
+  //   } catch (error) {
+  //     console.error("Sign Out Error:", error.message);
+  //   }
+  // };
 
   return (
     <section className={classes.fixed}>

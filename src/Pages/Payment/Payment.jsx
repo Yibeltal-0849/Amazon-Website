@@ -59,7 +59,7 @@ function Payment() {
         },
       });
 
-      // console.log(paymentIntent);
+      console.log(paymentIntent);
       //after confirmation =>order firestore database save,
       await db
         .collection("users")
